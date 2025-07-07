@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'ReadBook.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Readbook</h1>
+
+   <div class="info">
+    <p> Book - {{ book.bookname }}</p>
+    <p> Author - {{ book.authorname }}</p>
+   </div>
+
+    <div class="content-wrapper">
+        <iframe src="/media/{{ book.Bookpdf }}" height="900px"></iframe>
+        <div class="sidebar">
+            <div class="question-section">
+                <h3>Ask a question about the book</h3>
+                <form action="{% url 'SendToAi' %}">
+                    <textarea name="search_query" id="SearchArea" rows="5" placeholder="Type your question here..."></textarea>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+            <div class="result-section">
+                <h3>Result</h3>
+                <div id="result">
+                    {% if result %}
+                        {{ result }}
+                    {% else %}
+                        Your answer will appear here.
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

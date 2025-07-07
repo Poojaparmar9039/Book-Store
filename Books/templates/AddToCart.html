@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'AddToCart.css' %}">
+</head>
+<body>
+    <nav>
+        <h1>BOOKS</h1>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/Books/">Books</a></li>
+            <li><a href="/Manage/">Manage</a></li>
+        </ul>
+    </nav>
+
+    <div class="BookCardContainer">
+        {% for i in CartList %}
+            <div class="BookCard">
+                <div class="bookImage">
+                    <img src="{{ i.poster.url }}" alt="{{ i.title }}">
+                </div>
+                <div class="bookInfo">
+                    <h2>{{ i.title }}</h2>
+                    <p>Author: {{ i.author }}</p>
+                    <p class="price">Price: ${{ i.price }}</p>
+                </div>
+                <a href="{% url 'DeleteFromCart' i.id  %}">Delete</a>
+            </div>
+        {% endfor %}
+    </div>
+    
+</body>
+</html>

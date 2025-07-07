@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'Books.css' %}">
+    <title>Books</title>
+</head>
+<body>
+    <nav>
+        <h1>BOOKS</h1>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/Books/">Books</a></li>
+            <li><a href="/Manage/">Manage</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        {% for b in bookdata %}
+        <div class="cards">
+            <a href="{% url 'BookDetails' b.id %}">
+                <img src="{{ b.poster.url }}" alt="{{ b.bookname }}">
+               
+                <div class="content">
+                    <h1>{{ b.bookname }}</h1>
+                    <h2>{{ b.authorname }}</h2>
+                    <h3>${{ b.price }}</h3>
+                    <p>{{ b.desc }}</p>
+                    <!-- <h5>Edit in {{ b.editionyear }}</h5> -->
+                </div>
+                <button id="read">Read Now</button>
+            </a>
+           
+            <button><a href="{% url 'AddToCart' b.id %}">Add to cart</a></button>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'Manage.css' %}">
+    <title>Manage</title>
+</head>
+<body>
+    <nav>
+        <h1>BOOKS</h1>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/Books/">Books</a></li>
+            <li><a href="/Manage/">Manage</a></li>
+            <!-- <li><a href="/Account/">Account</a></li> -->
+        </ul>
+    </nav>
+    <div class="admin-panel">
+        <h1>Add New Book</h1>
+        <div>{{ message }}</div>
+        <form class="book-form" method="post" action="{% url 'Addbook' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="poster">Upload Poster Image:</label>
+                <input type="file" id="poster" name="poster" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <label for="bookname">Title:</label> 
+                <input type="text" id="bookname" name="bookname" required maxlength="100">
+            </div>
+            <div class="form-group">
+                <label for="authorname">Author:</label> 
+                <input type="text" id="authorname" name="authorname" required maxlength="100">
+            </div>
+            <div class="form-group">
+                <label for="desc">Description:</label>
+                <textarea id="desc" name="desc" required maxlength="200"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" step="0.01" min="0" max="999.99" required>
+            </div>
+            <!-- Optional: Category (Not in model, but kept if needed for future use) -->
+            <!-- <div class="form-group">
+                <label for="category">Category:</label>
+                <input type="text" id="category" name="category">
+            </div> -->
+            <div class="form-group">
+                <label for="Bookpdf">Upload PDF:</label>
+                <input type="file" id="Bookpdf" name="Bookpdf" accept="application/pdf" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="submit-btn">Add Book</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

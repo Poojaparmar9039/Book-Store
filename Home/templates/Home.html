@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'Home.css' %}">
+    <title>Home</title>
+</head>
+<body>
+    <nav>
+        <h1>BOOKS</h1>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/Books/">Books</a></li>
+            <li><a href="{% url 'manage' %}">Manage</a></li>
+            <!-- <li><a href=" ">About</a></li> -->
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Welcome to PageTurner Books</h1>
+        <p>Discover your next favorite story in our curated collection of
+        <br> bestsellers, classics, and hidden gems. </p>
+        <button><a href="{% url 'Books' %}">Explore Books</a></button>
+    </div>
+  
+    <div class="container2">
+        
+        {% for i in bookdata|slice:"1:5" %}
+        <div class="card">
+           <a href="{% url 'BookDetails'  i.id %}">
+            <img src="{{i.poster.url}}" alt="">
+            <h2>{{ i.bookname }}</h2>
+            <h5>{{ i.authorname }}</h5>
+           </a>
+        </div>   
+
+        {% endfor %}
+
+    </div>
+    
+</body>
+</html>

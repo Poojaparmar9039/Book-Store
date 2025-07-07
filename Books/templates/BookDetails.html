@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'BookDetails.css' %}">
+    <title>Book Details</title>
+</head>
+<body>
+
+    <nav>
+        <h1>BOOKS</h1>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/Books/">Books</a></li>
+            <li><a href="/Manage/">Manage</a></li>
+        </ul>
+    </nav>
+
+      <!--Book details page-->
+      <div class="cards">
+        <img src="{{ book.poster.url }}" alt="{{ book.title }}">
+        <div class="content">
+            <h1>{{ book.bookname }}</h1>
+            <h2>{{ book.authorname }}</h2>
+            <h3>${{ book.price }}</h3>
+            <p>{{ book.desc }}  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora aliquid, atque ipsam voluptatum laborum odio necessitatibus! Quasi repudiandae explicabo maxime unde, voluptates, quaerat iste quam saepe tenetur aliquid magnam itaque?</p>
+            <h5>Edit in {{ book.editionyear }}</h5>
+            <a href="{% url 'ReadBook' book.id %}">READ NOW</a>
+            <div class="publication-footer">
+                <p>Publication </p>
+                <p>Published: 2003</p>
+            </div>
+        </div>
+    </div>
+
+  
+</body>
+</html>
